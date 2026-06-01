@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open Data Dashboard | สภานักเรียน</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Open Data Dashboard">
+        <span class="brand-mark">OD</span>
+        <span>Open Data Dashboard</span>
+      </a>
+      <nav class="nav-links" aria-label="เมนูหลัก">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#projects">โครงการ</a>
+        <a href="#analytics">ข้อมูลสำคัญ</a>
+        <a href="#raw-data">ข้อมูลดิบ</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-content">
+          <p class="eyebrow">Student Council Open Data</p>
+          <h1>โปร่งใสไม่ใช่ slogan แต่ต้องเป็น policy</h1>
+          <p class="hero-copy">
+            Open Data Dashboard เป็นต้นแบบนโยบายที่ทำให้การเปิดเผยข้อมูลรายรับ รายจ่าย และโครงการของสภานักเรียนเป็นมาตรฐาน ไม่ใช่เพียงคำสัญญา
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#overview">ดูภาพรวมงบประมาณ</a>
+            <a class="button secondary" href="#raw-data">ตรวจสอบรายการ</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="สรุปงบประมาณล่าสุด">
+          <div class="last-updated-card">
+            <span>อัปเดตล่าสุด</span>
+            <strong>31 พ.ค. 2569</strong>
+            <b>13:42 น.</b>
+            <small>Open Data ที่ไม่อัปเดต ไม่มีค่า</small>
+          </div>
+          <div class="meter">
+            <span style="width: 68%"></span>
+          </div>
+          <div class="panel-metrics">
+            <div>
+              <span>ใช้ไปแล้ว</span>
+              <strong>68%</strong>
+            </div>
+            <div>
+              <span>คงเหลือ</span>
+              <strong>32%</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="overview">
+        <div class="section-heading">
+          <p class="eyebrow">Budget Overview</p>
+          <h2>ภาพรวมงบประมาณ</h2>
+        </div>
+        <div class="transparency-band" id="transparency" aria-label="Transparency Score">
+          <div class="score-card">
+            <div>
+              <p class="eyebrow">Transparency Score</p>
+              <h3>คะแนนความโปร่งใส</h3>
+              <p>คำนวณจากความครบถ้วนของรายการ งบประมาณโครงการ วันที่อัปเดต และสถานะการตรวจสอบ</p>
+            </div>
+            <div class="score-meter" aria-label="คะแนนความโปร่งใส 92 จาก 100">
+              <strong>92</strong>
+              <span>/100</span>
+            </div>
+          </div>
+          <div class="score-details">
+            <div>
+              <strong>100%</strong>
+              <span>รายการมีวันที่</span>
+            </div>
+            <div>
+              <strong>91%</strong>
+              <span>รายการอนุมัติแล้ว</span>
+            </div>
+            <div>
+              <strong>วันนี้</strong>
+              <span>ข้อมูลยังสดใหม่</span>
+            </div>
+          </div>
+        </div>
+        <div class="kpi-grid" id="kpiGrid" aria-label="ตัวชี้วัดงบประมาณ"></div>
+      </section>
+
+      <section class="section two-column">
+        <div>
+          <div class="section-heading compact">
+            <p class="eyebrow">Recent Transactions</p>
+            <h2>รายการล่าสุด</h2>
+          </div>
+          <div class="timeline" id="recentTimeline"></div>
+        </div>
+        <aside class="insight-box">
+          <p class="eyebrow">Transparency Note</p>
+          <h2>ข้อมูลชุดนี้เป็นข้อมูลจำลอง</h2>
+          <p>
+            ใช้สำหรับต้นแบบ v0.1 โดยออกแบบให้ทีมสภานักเรียนสามารถแทนที่ด้วยข้อมูลจริง หรือเชื่อมต่อ Google Sheets ในเวอร์ชันถัดไป
+          </p>
+        </aside>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section-heading">
+          <p class="eyebrow">Projects</p>
+          <h2>โครงการของสภานักเรียน</h2>
+        </div>
+        <div class="project-grid" id="projectGrid"></div>
+      </section>
+
+      <section class="section" id="analytics">
+        <div class="section-heading">
+          <p class="eyebrow">Budget Insights</p>
+          <h2>ข้อมูลสำคัญ</h2>
+          <p class="section-note">กราฟสั้น ๆ เพื่อช่วยเห็นทิศทาง ไม่ใช่ศูนย์กลางของแดชบอร์ด</p>
+        </div>
+        <div class="chart-grid">
+          <div class="chart-card">
+            <h3>Expense by Category</h3>
+            <canvas id="categoryChart" aria-label="กราฟรายจ่ายตามหมวดหมู่"></canvas>
+          </div>
+          <div class="chart-card">
+            <h3>Top Spending Projects</h3>
+            <canvas id="projectChart" aria-label="กราฟโครงการที่ใช้งบสูงสุด"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="raw-data">
+        <div class="table-heading">
+          <div class="section-heading compact">
+            <p class="eyebrow">Raw Data</p>
+            <h2>ข้อมูลรายการทั้งหมด</h2>
+          </div>
+          <div class="table-controls">
+            <button class="button export-button" type="button" data-export="csv">Download CSV</button>
+            <button class="button export-button" type="button" data-export="pdf">Download PDF</button>
+            <label>
+              <span>ค้นหา</span>
+              <input id="searchInput" type="search" placeholder="เช่น ค่าอาหาร, กิจกรรม" />
+            </label>
+            <label>
+              <span>หมวดหมู่</span>
+              <select id="categoryFilter">
+                <option value="all">ทั้งหมด</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>วันที่</th>
+                <th>รายการ</th>
+                <th>หมวดหมู่</th>
+                <th>จำนวนเงิน</th>
+                <th>สถานะ</th>
+              </tr>
+            </thead>
+            <tbody id="transactionTable"></tbody>
+          </table>
+          <p class="empty-state" id="emptyState" hidden>ไม่พบข้อมูลที่ตรงกับเงื่อนไข</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <section class="footer-proposer" aria-label="ผู้เสนอต้นแบบนโยบาย">
+          <img class="footer-logo" src="assets/tai-fai-khan-logo-footer.png" alt="โลโก้ท้ายฝ่ายค้าน" />
+          <div>
+            <h2>ท้ายฝ่ายค้าน</h2>
+            <p class="footer-role">
+              ผู้เสนอต้นแบบนโยบาย<br />
+              Open Data Dashboard
+            </p>
+            <p class="footer-purpose">
+              ส่งเสริมความโปร่งใส<br />
+              การตรวจสอบได้<br />
+              และการมีส่วนร่วมของนักเรียน
+            </p>
+          </div>
+        </section>
+
+        <section class="footer-system" aria-label="ข้อมูลระบบ">
+          <p class="eyebrow">ข้อมูลระบบ</p>
+          <dl class="system-list">
+            <div>
+              <dt>Version</dt>
+              <dd>0.1 Prototype</dd>
+            </div>
+            <div>
+              <dt>Last Updated</dt>
+              <dd>31 พฤษภาคม 2569</dd>
+            </div>
+            <div>
+              <dt>Data Source</dt>
+              <dd>
+                Mock Data<br />
+                <span>Prepared for future Google Sheets integration</span>
+              </dd>
+            </div>
+          </dl>
+          <div class="footer-actions">
+            <a class="footer-button primary" href="#raw-data">ดูข้อมูลดิบ</a>
+            <button class="footer-button secondary" type="button" data-export="csv">ดาวน์โหลด CSV</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="footer-bottom">
+        <span>Open Data Dashboard v0.1</span>
+        <span>Prototype Policy Proposal</span>
+        <span>© 2026</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
